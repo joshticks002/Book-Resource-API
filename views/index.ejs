@@ -1,0 +1,33 @@
+<html lang="en">
+<%- include("./partials/head.ejs") %>
+
+<body>
+  <%- include("./partials/nav.ejs") %>
+
+  <div class="blogs content">
+    <h1>Book(s)</h1>
+
+    <% if (books.length > 0) { %>
+      <% books.forEach(book => { %>
+
+        <h3 class="title"><a href="/api/books/<%= book.bookId %>" class="href">Title: <%= book.Title %></a></h3>
+        <p class="snippet">Author: <%= book.Author %></p>
+        <p class="snippet">Date Published: <%= book.datePublished %></p>
+        <p class="snippet">Description: <%= book.Description %></p>
+        <p class="snippet">Page Count: <%= book.pageCount %></p>
+        <p class="snippet">Genre: <%= book.Genre %></p>
+        <p class="snippet">ID: <%= book.bookId %></p>
+        <p class="snippet">Publisher: <%= book.Publisher %></p>
+
+      <% }) %>
+    <% } else { %>
+      <p>There are no books to display...</p>
+    <% } %>
+
+    <br/>
+    <a href="/add-new-book" class="href">Add new book</a>
+  </div>
+
+  <%- include("./partials/footer.ejs") %>
+</body>
+</html>

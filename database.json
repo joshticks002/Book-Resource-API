@@ -1,0 +1,42 @@
+[
+  {
+    "Title": "John Doe",
+    "Author": "Clement Tina",
+    "datePublished": "2022-06-19T23:03:42.492Z",
+    "Description": "A Promised Land is a memoir by Barack Obama, the 44th President of the United States from 2009 to 2017. Published on November 17, 2020, it is the first of a planned two-volume series",
+    "pageCount": 564,
+    "Genre": "documentary",
+    "bookId": 1,
+    "Publisher": "Bottom"
+  },
+  {
+    "Title": "A Promised Land",
+    "Author": "Barack Obama",
+    "datePublished": "2022-06-19T23:04:19.466Z",
+    "Description": "A Promised Land is a memoir by Barack Obama, the 44th President of the United States from 2009 to 2017. Published on November 17, 2020, it is the first of a planned two-volume series",
+    "pageCount": 768,
+    "Genre": "autobiography",
+    "bookId": 2,
+    "Publisher": "Crown"
+  },
+  {
+    "Title": "Clink Bluke",
+    "Author": "Barack Obama",
+    "datePublished": "2022-06-19T23:04:50.651Z",
+    "Description": "A Promised Land is a memoir by Barack Obama, the 44th President of the United States from 2009 to 2017. Published on November 17, 2020, it is the first of a planned two-volume series",
+    "pageCount": 1268,
+    "Genre": "autobiography",
+    "bookId": 3,
+    "Publisher": "Besty"
+  },
+  {
+    "Title": "Harry Potter and The Chamber of Secret",
+    "Author": "J. K. Rowlings",
+    "datePublished": "2022-06-22T04:42:24.691Z",
+    "Description": "Harry and the chamber of secret tells the tale of a young wizard whose birth circumstance was the defeat of a evil warlord but his return to Hogwarts soon becomes their doom.",
+    "pageCount": 3478,
+    "Genre": "Mystery, Documentary",
+    "bookId": 4,
+    "Publisher": "Fried Books"
+  }
+]

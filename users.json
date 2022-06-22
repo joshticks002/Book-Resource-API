@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1,
+    "name": "Moses",
+    "email": "moses@gmail.com",
+    "password": "$2a$10$dEEuP8g2xd1z0ElM9ketm.4bm96urLFDS.0yy4NZgE/9xTwSDEtAu"
+  },
+  {
+    "id": 2,
+    "name": "Joshua",
+    "email": "joshua@gmail.com",
+    "password": "$2a$10$8.C90b168yzqHI27PI.xmuzwk3rbh0LjF53mfUS2vV.ll7g4tX3L6"
+  },
+  {
+    "id": 3,
+    "name": "Joshua Adeyemo",
+    "email": "jadeyemo002@gmail.com",
+    "password": "$2a$10$XX3cb/9GL3mON0DjpkUCSu7gSo3mnKyAw0ACER9vBJd98CkIZAYdy"
+  },
+  {
+    "id": 4,
+    "name": "Manny",
+    "email": "manny@gmail.com",
+    "password": "$2a$10$n8lMoTQKhzNAlzSsrRs0Be/X9BXxtesOVqQs/PrtxVlkOUABpT6Yy"
+  }
+]
