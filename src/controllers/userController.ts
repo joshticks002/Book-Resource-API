@@ -5,7 +5,7 @@ const bcrypt = require('bcryptjs')
 const asyncHandler = require('express-async-handler')
 
 const generateToken = (id: number) => {
-    return jwt.sign({ id }, process.env.JWT_SECRET, {
+    return jwt.sign({ id }, process.env.JWT_SECRET || 123456, {
       expiresIn: '3d',
     })
 }
