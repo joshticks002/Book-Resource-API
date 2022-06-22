@@ -11,7 +11,7 @@ const protect = asyncHandler(async (req: Request, res: Response, next: NextFunct
     try {
       // Verify token
       if (process.env.JWT_SECRET){
-        const decoded = jwt.verify(token, process.env.JWT_SECRET || 123456);
+        const decoded = jwt.verify(token, process.env.JWT_SECRET || '123456abc');
         // Get user from the token
         if (typeof(decoded) !== "string") {
             const user = await Model.findUserById(decoded.id);
@@ -33,7 +33,7 @@ const protect = asyncHandler(async (req: Request, res: Response, next: NextFunct
 
       // Verify token
       if (process.env.JWT_SECRET){
-        const decoded = jwt.verify(token, process.env.JWT_SECRET || 123456);
+        const decoded = jwt.verify(token, process.env.JWT_SECRET || '123456abc');
         // Get user from the token
         if (typeof(decoded) !== "string") {
             const user = await Model.findUserById(decoded.id);
