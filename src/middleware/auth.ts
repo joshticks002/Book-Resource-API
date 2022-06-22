@@ -2,11 +2,10 @@ import { NextFunction, Request, Response } from "express";
 const Model = require('../models/userModel')
 const jwt = require('jsonwebtoken')
 const asyncHandler = require('express-async-handler')
-const { keeper } = require('../controllers/userController')
+
 
 const protect = asyncHandler(async (req: Request, res: Response, next: NextFunction) => {
-  let token = keeper()
-  console.log(token)
+  let token = req.cookies.Token
 
   if (token) {
     try {

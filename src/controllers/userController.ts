@@ -10,11 +10,6 @@ const generateToken = (id: number) => {
     })
 }
 
-let userToken = ''
-const keeper = () => {
-  const validToken = userToken 
-  return validToken.trim()
-}
 
 const registerUser = asyncHandler(async (req: Request, res: Response) => {
     const { name, email, password } = req.body
@@ -41,15 +36,9 @@ const registerUser = asyncHandler(async (req: Request, res: Response) => {
     
     if (user) {
       const mytoken = generateToken(user.id)
-      userToken = mytoken
+      res.cookie('Token', mytoken)
       
-      res.redirect('/api/books')
-      res.status(201).json({
-        _id: user.id,
-        name: user.name,
-        email: user.email,
-        token: mytoken,
-      })
+      res.status(201).redirect('/api/books')
     }
 })
 
@@ -61,19 +50,18 @@ const loginUser = asyncHandler(async (req: Request, res: Response) => {
   
     if (user && (await bcrypt.compare(password, user.password))) {
       const mytoken = generateToken(user.id)
-      userToken = mytoken
+      res.cookie('Token', mytoken)
       
       res.redirect('/api/books')
-      res.json({
-        _id: user.id,
-        name: user.name,
-        email: user.email,
-        token: mytoken,
-      })
     } else {
       res.status(400)
       throw new Error('Invalid credentials')
     }
+})
+
+const logoutUser = asyncHandler(async (req: Request, res: Response) => {
+    res.cookie('Token', null)
+    res.redirect('/api/books')
 })
   
 
@@ -81,5 +69,5 @@ const loginUser = asyncHandler(async (req: Request, res: Response) => {
 module.exports = {
     registerUser,
     loginUser,
-    keeper
+    logoutUser
 }

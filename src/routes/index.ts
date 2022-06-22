@@ -7,21 +7,6 @@ const { getBooks, getBookById, getBooksByGenre, addNewBook, updateBook, deleteBo
 const validator = require('express-joi-validation').createValidator({})
 const { protect } = require('../middleware/auth')
 
-
-router.get('/login', (req: Request, res: Response, next: NextFunction) => {
-  res.render('login', { 
-      title: 'Login Page'
-  })
-  next()
-})
-
-router.get('/register', (req: Request, res: Response, next: NextFunction) => {
-  res.render('register', { 
-      title: 'Registration Page'
-  })
-  next()
-})
-
 router.get('/add-new-book', protect, (req: Request, res: Response, next: NextFunction) => {
   res.render('create', { 
       title: 'New Book'
@@ -29,9 +14,9 @@ router.get('/add-new-book', protect, (req: Request, res: Response, next: NextFun
   next(getBooks)
 })
 
-router.get('/', protect, getBooks)
+router.get('/', getBooks)
 
-router.route('/:id').get(protect, getBookById).delete(protect, deleteBookData)
+router.route('/:id').get(protect, getBookById).post(protect, deleteBookData)
 
 router.get('/:genre', protect, getBooksByGenre)
 
@@ -39,7 +24,7 @@ router.post('/', validator.body(newInput()), protect, (req: Request, res: Respon
     addNewBook(req.body, res)
 })
 
-router.put('/:id', validator.body(updateInput()), protect, (req: Request, res: Response) => {
+router.post('/update/:id', validator.body(updateInput()), protect, (req: Request, res: Response) => {
     updateBook(req.body, res, req.params.id)
 })
 

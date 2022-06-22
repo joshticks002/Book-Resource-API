@@ -86,7 +86,8 @@ textarea{
 }
 .create-blog button{
   margin-top: 20px;
-  background: crimson;
+  border-radius: 4px;
+  background: rgb(220, 90, 20);
   color: white;
   padding: 6px;
   border: 0;

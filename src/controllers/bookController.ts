@@ -12,15 +12,15 @@ interface Update {
 
 const getBooks = async(req: Request, res: Response) => {
     const books = await Model.allBooks()
-    res.render('index',{ title: "Book Library", books})
+    res.render('index',{ title: "Book Library", books, "token": req.cookies.Token})
 }
 
 const getBookById = async(req: Request, res: Response) => {
     try{
         const books = await Model.bookById(req.params.id)
-        res.render('index',{ title: "Books", books: [books]})
+        res.render('bookinfo', { title: "Books", books: [books]})
     } catch(error) {
-        res.render('404', {title: "Books", message: error})
+        res.render('404', {title: "Books", message: error, "token": req.cookies.Token})
     }
 }
 
@@ -47,7 +47,7 @@ const addNewBook = async(req: Update, res: Response) => {
         }
     
         const book = await Model.addNew(input)
-        res.render('index',{ title: "New Book", books: [book]})
+        res.render('index', { title: "New Book", books: [book]})
     } catch(error) {
         res.render('404', {title: "Books", message: error})
     }  
