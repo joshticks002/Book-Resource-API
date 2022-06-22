@@ -33,7 +33,7 @@ const registerUser = asyncHandler(async (req: Request, res: Response) => {
       password: hashedPassword,
     })
 
-    
+    // register user
     if (user) {
       const mytoken = generateToken(user.id)
       res.cookie('Token', mytoken)

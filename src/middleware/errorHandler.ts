@@ -5,10 +5,10 @@ const errorHandler = (err: HttpError, req: Request, res: Response, next: NextFun
     const statusCode = res.statusCode ? res.statusCode : 500
 
     res.status(statusCode).render('404', { title: 'Error', message: err.message })
-    res.json({
-        message: err.message,
-        stack: process.env.NODE_ENV === 'production' ? null : err.stack
-    })
+    // res.json({
+    //     message: err.message,
+    //     stack: process.env.NODE_ENV === 'production' ? null : err.stack
+    // })
 }
 
 module.exports = {

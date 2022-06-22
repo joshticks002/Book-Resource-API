@@ -42,10 +42,10 @@ function bookByGenre(genre: string) {
 
 function addNew(data: object) {
     return new Promise((resolve, reject) => {
-        const newMovie = {...data}
-        database.push(newMovie)
+        const newBook = {...data}
+        database.push(newBook)
         writeToFile('./database.json', database)
-        resolve(newMovie)
+        resolve(newBook)
     })
 }
 

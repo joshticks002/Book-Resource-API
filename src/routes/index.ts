@@ -11,12 +11,12 @@ router.get('/add-new-book', protect, (req: Request, res: Response, next: NextFun
   res.render('create', { 
       title: 'New Book'
   })
-  next(getBooks)
+  next()
 })
 
 router.get('/', getBooks)
 
-router.route('/:id').get(protect, getBookById).post(protect, deleteBookData)
+router.route('/:id').get(protect, getBookById).delete(protect, deleteBookData)
 
 router.get('/:genre', protect, getBooksByGenre)
 
@@ -24,7 +24,7 @@ router.post('/', validator.body(newInput()), protect, (req: Request, res: Respon
     addNewBook(req.body, res)
 })
 
-router.post('/update/:id', validator.body(updateInput()), protect, (req: Request, res: Response) => {
+router.put('/update/:id', validator.body(updateInput()), protect, (req: Request, res: Response) => {
     updateBook(req.body, res, req.params.id)
 })
 
