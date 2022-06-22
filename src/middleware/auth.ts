@@ -6,12 +6,13 @@ const asyncHandler = require('express-async-handler')
 
 const protect = asyncHandler(async (req: Request, res: Response, next: NextFunction) => {
   let token = req.cookies.Token
+  const JWT_SECRET = '123456abc'
 
   if (token) {
     try {
       // Verify token
-      if (process.env.JWT_SECRET){
-        const decoded = jwt.verify(token, process.env.JWT_SECRET || '123456abc');
+      if (JWT_SECRET){
+        const decoded = jwt.verify(token, JWT_SECRET);
         // Get user from the token
         if (typeof(decoded) !== "string") {
             const user = await Model.findUserById(decoded.id);
@@ -32,8 +33,8 @@ const protect = asyncHandler(async (req: Request, res: Response, next: NextFunct
       token = req.headers.authorization.split(' ')[1]
 
       // Verify token
-      if (process.env.JWT_SECRET){
-        const decoded = jwt.verify(token, process.env.JWT_SECRET || '123456abc');
+      if (JWT_SECRET){
+        const decoded = jwt.verify(token, JWT_SECRET);
         // Get user from the token
         if (typeof(decoded) !== "string") {
             const user = await Model.findUserById(decoded.id);
