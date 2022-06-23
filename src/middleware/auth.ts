@@ -14,10 +14,10 @@ const protect = asyncHandler(async (req: Request, res: Response, next: NextFunct
       if (JWT_SECRET){
         const decoded = jwt.verify(token, JWT_SECRET);
         // Get user from the token
-        if (typeof(decoded) !== "string") {
+        if (decoded) {
             const user = await Model.findUserById(decoded.id);
+            next();
         }
-        next();
       }
     } catch (error) {
       res.status(401)

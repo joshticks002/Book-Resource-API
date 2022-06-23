@@ -9,7 +9,7 @@
 
     <% if (books.length > 0) { %>
       <% books.forEach(book => { %>
-        <div class="create-blog content">
+
             <h3 class="title"><a href="/api/books/<%= book.bookId %>" class="href">Title: <%= book.Title %></a></h3>
             <p class="snippet">Author: <%= book.Author %></p>
             <p class="snippet">Date Published: <%= book.datePublished %></p>
@@ -18,25 +18,38 @@
             <p class="snippet">Genre: <%= book.Genre %></p>
             <p class="snippet">ID: <%= book.bookId %></p>
             <p class="snippet">Publisher: <%= book.Publisher %></p>
+            <br/>
             <form action="/api/books/update/<%= book.bookId %>?_method=PUT" method="POST">
-                <label for="title">Title:</label>
-                <input type="text" id="title" name="Title" required>
-                <label for="snippet">Book Author:</label>
-                <input type="text" id="snippet" name="Author" required>
-                <label for="snippet">Book description:</label>
-                <textarea id="body" name="Description" required></textarea>
-                <label for="snippet">Pagecount:</label>
-                <input type="text" id="snippet" name="pageCount" required>
-                <label for="snippet">Book Genre(s):</label>
-                <input type="text" id="snippet" name="Genre" required>
-                <label for="body">Publisher:</label>
-                <input type="text" id="snippet" name="Publisher" required>
-                <button type="submit">Edit book info</button>
+              <div class="form-group">
+                <label for="title" class="form-label">Title:</label>
+                <input type="text" name="Title" class="form-control" required>
+              </div>
+              <div class="form-group">
+                <label for="snippet" class="form-label">Book Author:</label>
+                <input type="text" class="form-control" name="Author" required>
+              </div>
+              <div class="form-group">
+                <label for="snippet" class="form-label">Book description:</label>
+                <textarea class="form-control" name="Description" required></textarea>
+              </div>
+              <div class="form-group">
+                <label for="snippet" class="form-label">Pagecount:</label>
+                <input type="text" class="form-control" name="pageCount" required>
+              </div>
+              <div class="form-group">
+                <label for="snippet" class="form-label">Book Genre(s):</label>
+                <input type="text" class="form-control" name="Genre" required>
+              </div>
+              <div class="form-group">
+                <label for="body" class="form-label">Publisher:</label>
+                <input type="text" class="form-control"" name="Publisher" required>
+              </div>
+                <button type="submit" class="btn btn-success">Edit Book</button>
             </form>
             <form action="/api/books/<%= book.bookId %>?_method=DELETE" method="POST">
-                <button type="submit">Delete Book</button>
+                <button type="submit" class="btn btn-danger">Delete Book</button>
             </form>
-        </div>
+
 
       <% }) %>
     <% } else { %>
@@ -44,8 +57,8 @@
     <% } %>
 
     <br/>
-    <a href="/api/books" class="href">Go to Home</a>
-    <a href="/add-new-book" class="href">Add new book</a>
+    <a href="/api/books" class="btn btn-secondary">Go to Home</a>
+    <a href="/add-new-book" class="btn btn-warning">Add new book</a>
   </div>
 
   <%- include("./partials/footer.ejs") %>

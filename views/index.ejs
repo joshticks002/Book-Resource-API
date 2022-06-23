@@ -9,15 +9,16 @@
 
     <% if (books.length > 0) { %>
       <% books.forEach(book => { %>
-
-        <h3 class="title"><a href="/api/books/<%= book.bookId %>" class="href">Title: <%= book.Title %></a></h3>
-        <p class="snippet">Author: <%= book.Author %></p>
-        <p class="snippet">Date Published: <%= book.datePublished %></p>
-        <p class="snippet">Description: <%= book.Description %></p>
-        <p class="snippet">Page Count: <%= book.pageCount %></p>
-        <p class="snippet">Genre: <%= book.Genre %></p>
-        <p class="snippet">ID: <%= book.bookId %></p>
-        <p class="snippet">Publisher: <%= book.Publisher %></p>
+        <div class="m1-2 mb-1">
+          <h3 class="title"><a href="/api/books/<%= book.bookId %>" class="href">Title: <%= book.Title %></a></h3>
+          <p class="snippet">Author: <%= book.Author %></p>
+          <p class="snippet">Date Published: <%= book.datePublished %></p>
+          <p class="snippet">Description: <%= book.Description %></p>
+          <p class="snippet">Page Count: <%= book.pageCount %></p>
+          <p class="snippet">Genre: <%= book.Genre %></p>
+          <p class="snippet">ID: <%= book.bookId %></p>
+          <p class="snippet">Publisher: <%= book.Publisher %></p>
+        </div>
 
       <% }) %>
     <% } else { %>
@@ -25,7 +26,7 @@
     <% } %>
 
     <br/>
-    <a href="/add-new-book" class="href">Add new book</a>
+    <a href="/add-new-book" class="btn btn-warning">Add new book</a>
   </div>
 
   <%- include("./partials/footer.ejs") %>

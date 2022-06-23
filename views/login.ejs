@@ -4,15 +4,26 @@
 <body>
   <%- include("./partials/nav.ejs") %>
 
-  <div class="create-blog content">
+  <div class="container-fluid">
     <form action="/api/users/login" method="POST" novalidate>
-      <label for="email">Email:</label>
-      <input type="text" id="snippet" name="email" required>
-      <label for="password">Password:</label>
-      <input type="password" id="snippet" name="password" required>
-      <button type="submit">Login</button>
+
+      <div class="form-group mx-auto w-50">
+        <label for="email" class="form-label">Email:</label>
+        <input type="text" class="form-control" name="email" required>
+      </div>
+
+      <div class="form-group mx-auto w-50">
+        <label for="password" class="form-label">Password:</label>
+        <input type="password" class="form-control" name="password" required>
+      </div>
+
+      <div class="text-center">
+        <button type="submit" class="btn btn-primary mx-auto w-25">Login</button>
+      </div>
     </form>
-    <a href="/api/users/register" class="href">Register</a>
+    <div class="text-center">
+      <a href="/api/users/register" class="btn btn-success">Register</a>
+    </div>
   </div>
 
   <%- include("./partials/footer.ejs") %>
