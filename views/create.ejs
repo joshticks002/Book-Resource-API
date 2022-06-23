@@ -5,7 +5,9 @@
   <%- include("./partials/nav.ejs") %>
 
   <div class="create-blog content">
-    <h2>Add a new book</h2>
+    <div class="card-header rounded-pill">
+      <h2 class="card-title">Add a new book</h2>
+    </div>
     <form action="/api/books" method="POST">
       <div class="form-group">
         <label for="title" class="form-label">Title:</label>
@@ -31,7 +33,9 @@
         <label for="body" class="form-label">Publisher:</label>
         <input type="text" class="form-control"" name="Publisher" required>
       </div>
-      <button type="submit" class="btn btn-success">Submit</button>
+      <div class="text-center">
+        <button type="submit" class="btn btn-success mx-auto w-25">Submit</button>
+      </div>
     </form>
 
     <a href="/api/books" class="btn btn-secondary">Go to Home</a>
