@@ -21,9 +21,7 @@ router.route('/:id').get(protect, getBookById).delete(protect, deleteBookData)
 
 router.get('/:genre', protect, getBooksByGenre)
 
-router.post('/', validator.body(newInput()), protect, (req: Request, res: Response) => {
-    addNewBook(req, res)
-})
+router.post('/', validator.body(newInput()), protect, addNewBook)
 
 router.put('/update/:id', validator.body(updateInput()), protect, (req: Request, res: Response) => {
     updateBook(req, res, req.params.id)

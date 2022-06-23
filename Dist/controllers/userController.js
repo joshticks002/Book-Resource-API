@@ -50,7 +50,7 @@ const loginUser = asyncHandler(async (req, res) => {
 const logoutUser = asyncHandler(async (req, res) => {
     res.cookie('Token', '');
     req.cookies.Token = '';
-    res.redirect('/api/books');
+    res.redirect('/api/users/login');
 });
 module.exports = {
     registerUser,

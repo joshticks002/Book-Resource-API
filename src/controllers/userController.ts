@@ -62,7 +62,7 @@ const loginUser = asyncHandler(async (req: Request, res: Response) => {
 const logoutUser = asyncHandler(async (req: Request, res: Response) => {
     res.cookie('Token', '')
     req.cookies.Token = ''
-    res.redirect('/api/books')
+    res.redirect('/api/users/login')
 })
   
 

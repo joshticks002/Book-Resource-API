@@ -17,9 +17,7 @@ router.get('/add-new-book', protect, (req, res, next) => {
 router.get('/', getBooks);
 router.route('/:id').get(protect, getBookById).delete(protect, deleteBookData);
 router.get('/:genre', protect, getBooksByGenre);
-router.post('/', validator.body(newInput()), protect, (req, res) => {
-    addNewBook(req, res);
-});
+router.post('/', validator.body(newInput()), protect, addNewBook);
 router.put('/update/:id', validator.body(updateInput()), protect, (req, res) => {
     updateBook(req, res, req.params.id);
 });
