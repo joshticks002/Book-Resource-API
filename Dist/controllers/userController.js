@@ -12,7 +12,7 @@ const generateToken = (id) => {
 const registerUser = asyncHandler(async (req, res) => {
     const { name, email, password } = req.body;
     // Check if user exists
-    const userExists = await Model.findExistingUser(email);
+    const userExists = await Model.findExistingUser(email.toLowerCase());
     if (userExists !== 'false') {
         res.status(400);
         throw new Error('User already exists');
@@ -23,23 +23,27 @@ const registerUser = asyncHandler(async (req, res) => {
     // Create user
     const user = await Model.createUser({
         name,
-        email,
+        email: email.toLowerCase(),
         password: hashedPassword,
     });
     // register user
     if (user) {
         const mytoken = generateToken(user.id);
         res.cookie('Token', mytoken);
+        res.cookie('Uid', user.uid);
+        res.cookie('Username', user.name);
         res.status(201).redirect('/api/books');
     }
 });
 const loginUser = asyncHandler(async (req, res) => {
     const { email, password } = req.body;
     // Check for user email
-    const user = await Model.findUser(email);
+    const user = await Model.findUser(email.toLowerCase());
     if (user && (await bcrypt.compare(password, user.password))) {
         const mytoken = generateToken(user.id);
         res.cookie('Token', mytoken);
+        res.cookie('Uid', user.uid);
+        res.cookie('Username', user.name);
         res.redirect('/api/books');
     }
     else {
@@ -50,6 +54,8 @@ const loginUser = asyncHandler(async (req, res) => {
 const logoutUser = asyncHandler(async (req, res) => {
     res.cookie('Token', '');
     req.cookies.Token = '';
+    req.cookies.Username = '';
+    req.cookies.Uid = '';
     res.redirect('/api/users/login');
 });
 module.exports = {

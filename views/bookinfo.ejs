@@ -19,36 +19,38 @@
             <p class="snippet">ID: <%= book.bookId %></p>
             <p class="snippet">Publisher: <%= book.Publisher %></p>
             <br/>
-            <form action="/api/books/update/<%= book.bookId %>?_method=PUT" method="POST">
-              <div class="form-group">
-                <label for="title" class="form-label">Title:</label>
-                <input type="text" name="Title" class="form-control" required>
-              </div>
-              <div class="form-group">
-                <label for="snippet" class="form-label">Book Author:</label>
-                <input type="text" class="form-control" name="Author" required>
-              </div>
-              <div class="form-group">
-                <label for="snippet" class="form-label">Book description:</label>
-                <textarea class="form-control" name="Description" required></textarea>
-              </div>
-              <div class="form-group">
-                <label for="snippet" class="form-label">Pagecount:</label>
-                <input type="text" class="form-control" name="pageCount" required>
-              </div>
-              <div class="form-group">
-                <label for="snippet" class="form-label">Book Genre(s):</label>
-                <input type="text" class="form-control" name="Genre" required>
-              </div>
-              <div class="form-group">
-                <label for="body" class="form-label">Publisher:</label>
-                <input type="text" class="form-control"" name="Publisher" required>
-              </div>
-                <button type="submit" class="btn btn-success">Edit Book</button>
-            </form>
-            <form action="/api/books/<%= book.bookId %>?_method=DELETE" method="POST">
-                <button type="submit" class="btn btn-danger">Delete Book</button>
-            </form>
+            <% if (uid === book.Uid) { %>
+              <form action="/api/books/update/<%= book.bookId %>?_method=PUT" method="POST">
+                <div class="form-group">
+                  <label for="title" class="form-label">Title:</label>
+                  <input type="text" name="Title" class="form-control" required>
+                </div>
+                <div class="form-group">
+                  <label for="snippet" class="form-label">Book Author:</label>
+                  <input type="text" class="form-control" name="Author" required>
+                </div>
+                <div class="form-group">
+                  <label for="snippet" class="form-label">Book description:</label>
+                  <textarea class="form-control" name="Description" required></textarea>
+                </div>
+                <div class="form-group">
+                  <label for="snippet" class="form-label">Pagecount:</label>
+                  <input type="text" class="form-control" name="pageCount" required>
+                </div>
+                <div class="form-group">
+                  <label for="snippet" class="form-label">Book Genre(s):</label>
+                  <input type="text" class="form-control" name="Genre" required>
+                </div>
+                <div class="form-group">
+                  <label for="body" class="form-label">Publisher:</label>
+                  <input type="text" class="form-control"" name="Publisher" required>
+                </div>
+                  <button type="submit" class="btn btn-success">Edit Book</button>
+              </form>
+              <form action="/api/books/<%= book.bookId %>?_method=DELETE" method="POST">
+                  <button type="submit" class="btn btn-danger">Delete Book</button>
+              </form>
+            <% } %>
 
 
       <% }) %>

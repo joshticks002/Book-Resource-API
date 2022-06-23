@@ -22,5 +22,12 @@
     "name": "Manny",
     "email": "manny@gmail.com",
     "password": "$2a$10$n8lMoTQKhzNAlzSsrRs0Be/X9BXxtesOVqQs/PrtxVlkOUABpT6Yy"
+  },
+  {
+    "id": 5,
+    "uid": "1b9353c7-b2d8-4407-ac63-c7ad77ba09b3",
+    "name": "Jesus",
+    "email": "jesus@gmail.com",
+    "password": "$2a$10$wERKO2ZHX8C7.mvCZqsUseyoWvtyGjkV6y1g3beLppHcXYY7ret5O"
   }
 ]

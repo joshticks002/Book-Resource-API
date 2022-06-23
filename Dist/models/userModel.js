@@ -1,6 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 let database = require('../../users.json');
+const { v4: uuidv4 } = require('uuid');
 const { writeToFile } = require('../utils');
 function generateId() {
     if (database.length === 0) {
@@ -35,7 +36,7 @@ function findUserById(id) {
 }
 function createUser(data) {
     return new Promise((resolve, reject) => {
-        const newUser = { id: generateId(), ...data };
+        const newUser = { id: generateId(), uid: uuidv4(), ...data };
         database.push(newUser);
         writeToFile('./users.json', database);
         resolve(newUser);

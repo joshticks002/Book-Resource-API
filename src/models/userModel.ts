@@ -1,5 +1,6 @@
 import fs from 'fs'
 let database = require('../../users.json')
+const { v4: uuidv4 } = require('uuid');
 const { writeToFile } = require('../utils')
 
 
@@ -39,7 +40,7 @@ function findUserById(id: number) {
 
 function createUser(data: object) {
     return new Promise((resolve, reject) => {
-        const newUser = {id: generateId(), ...data}
+        const newUser = {id: generateId(), uid: uuidv4(), ...data}
         database.push(newUser)
         writeToFile('./users.json', database)
         resolve(newUser)

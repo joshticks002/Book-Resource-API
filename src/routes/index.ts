@@ -10,7 +10,9 @@ const { protect } = require('../middleware/auth')
 router.get('/add-new-book', protect, (req: Request, res: Response, next: NextFunction) => {
   res.render('create', { 
       title: 'New Book',
-      "token": req.cookies.Token
+      "token": req.cookies.Token,
+      "uid": req.cookies.Uid,
+      "user": req.cookies.Username
   })
   next()
 })
@@ -29,7 +31,9 @@ router.put('/update/:id', validator.body(updateInput()), protect, (req: Request,
 
 /* GET home page. */
 router.get('/home', function(req: Request, res: Response, next: NextFunction) {
-  res.render('login', { title: 'Book Resource', "token": req.cookies.Token });
+  res.render('login', { title: 'Book Resource', "token": req.cookies.Token,
+                        "uid": req.cookies.Uid,
+                        "user": req.cookies.Username });
 });
 
 module.exports = router;

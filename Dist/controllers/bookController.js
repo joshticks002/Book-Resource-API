@@ -3,15 +3,25 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const Model = require('../models/bookModel');
 const getBooks = async (req, res) => {
     const books = await Model.allBooks();
-    res.render('index', { title: "Book Library", books, "token": req.cookies.Token });
+    res.render('index', { title: "Book Library",
+        books,
+        "token": req.cookies.Token,
+        "uid": req.cookies.Uid,
+        "user": req.cookies.Username });
 };
 const getBookById = async (req, res) => {
     try {
         const books = await Model.bookById(req.params.id);
-        res.render('bookinfo', { title: "Books", books: [books], "token": req.cookies.Token });
+        res.render('bookinfo', { title: "Books", books: [books],
+            "token": req.cookies.Token,
+            "uid": req.cookies.Uid,
+            "user": req.cookies.Username });
     }
     catch (error) {
-        res.render('404', { title: "Books", message: error, "token": req.cookies.Token });
+        res.render('404', { title: "Books", message: error,
+            "token": req.cookies.Token,
+            "uid": req.cookies.Uid,
+            "user": req.cookies.Username });
     }
 };
 const getBooksByGenre = async (req, res) => {
@@ -27,6 +37,7 @@ const addNewBook = async (req, res) => {
     try {
         const body = req.body;
         const input = {
+            "Uid": req.cookies.Uid,
             "Title": body.Title,
             "Author": body.Author,
             "datePublished": new Date(),
@@ -37,10 +48,17 @@ const addNewBook = async (req, res) => {
             "Publisher": body.Publisher,
         };
         const book = await Model.addNew(input);
-        res.render('index', { title: "New Book", books: [book], "token": req.cookies.Token });
+        res.render('index', { title: "New Book", books: [book],
+            "token": req.cookies.Token,
+            "uid": req.cookies.Uid,
+            "user": req.cookies.Username });
     }
     catch (error) {
-        res.render('404', { title: "Books", message: error, "token": req.cookies.Token });
+        res.render('404', { title: "Books",
+            message: error,
+            "token": req.cookies.Token,
+            "uid": req.cookies.Uid,
+            "user": req.cookies.Username });
     }
 };
 const updateBook = async (req, res, idStr) => {
@@ -49,6 +67,7 @@ const updateBook = async (req, res, idStr) => {
     try {
         const theBook = await Model.bookById(id);
         const input = {
+            "Uid": theBook.Uid,
             "Title": body.Title || theBook.Title,
             "Author": body.Author || theBook.Author,
             "datePublished": theBook.datePublished,
@@ -59,10 +78,18 @@ const updateBook = async (req, res, idStr) => {
             "Publisher": body.Publisher || theBook.Publisher,
         };
         const book = await Model.update(id, input);
-        res.render('index', { title: "Updated Book", books: [book], "token": req.cookies.Token });
+        res.render('index', { title: "Updated Book",
+            books: [book],
+            "token": req.cookies.Token,
+            "uid": req.cookies.Uid,
+            "user": req.cookies.Username });
     }
     catch (error) {
-        res.render('404', { title: "Books", message: error, "token": req.cookies.Token });
+        res.render('404', { title: "Books",
+            message: error,
+            "token": req.cookies.Token,
+            "uid": req.cookies.Uid,
+            "user": req.cookies.Username });
     }
 };
 const deleteBookData = async (req, res) => {
@@ -74,11 +101,17 @@ const deleteBookData = async (req, res) => {
             title: "Deleted",
             books: [theBook],
             message: `${theBook.Title} with id ${id} has been removed`,
-            "token": req.cookies.Token
+            "token": req.cookies.Token,
+            "uid": req.cookies.Uid,
+            "user": req.cookies.Username
         });
     }
     catch (error) {
-        res.render('404', { title: "Books", message: error, "token": req.cookies.Token });
+        res.render('404', { title: "Books",
+            message: error,
+            "token": req.cookies.Token,
+            "uid": req.cookies.Uid,
+            "user": req.cookies.Username });
     }
 };
 module.exports = {
