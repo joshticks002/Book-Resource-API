@@ -13,18 +13,6 @@ function newInput() {
     return schema
 }
 
-function updateInput() {
-    const schema = Joi.object({
-        "Title": Joi.string(),
-        "Author": Joi.string(),
-        "Description": Joi.string(),
-        "pageCount": Joi.number().integer(),
-        "Genre": Joi.string(),
-        "Publisher": Joi.string(),
-    })
-    return schema
-}
-
 function newUser() {
     const schema = Joi.object({
         "name": Joi.string().required(),
@@ -62,7 +50,6 @@ module.exports = {
     newInput,
     writeToFile,
     checkDatabase,
-    updateInput,
     newUser,
     userLogin
 }
