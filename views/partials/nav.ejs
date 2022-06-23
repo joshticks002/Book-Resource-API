@@ -8,7 +8,7 @@
     <% if (!token) { %>
       <li><a href="/api/users/login">Login</a></li>
       <li><a href="/api/users/register">Register</a></li>
-    <% } else if (typeof token == 'string') { %>
+    <% } else if (token) { %>
       <li><a href="/api/users/logout">logout</a></li>
     <% } %>
   </ul>
