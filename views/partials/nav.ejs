@@ -5,8 +5,11 @@
   </div>
   <ul>
     <li><a href="/">Browse</a></li>
-    <li><a href="/api/users/login">Login</a></li>
-    <li><a href="/api/users/register">Register</a></li>
-    <li><a href="/api/users/logout">logout</a></li>
+    <% if (!token) { %>
+      <li><a href="/api/users/login">Login</a></li>
+      <li><a href="/api/users/register">Register</a></li>
+    <% } else if (typeof token == 'string') { %>
+      <li><a href="/api/users/logout">logout</a></li>
+    <% } %>
   </ul>
 </nav>

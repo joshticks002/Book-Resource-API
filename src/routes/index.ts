@@ -9,7 +9,8 @@ const { protect } = require('../middleware/auth')
 
 router.get('/add-new-book', protect, (req: Request, res: Response, next: NextFunction) => {
   res.render('create', { 
-      title: 'New Book'
+      title: 'New Book',
+      "token": req.cookies.Token
   })
   next()
 })
@@ -21,16 +22,16 @@ router.route('/:id').get(protect, getBookById).delete(protect, deleteBookData)
 router.get('/:genre', protect, getBooksByGenre)
 
 router.post('/', validator.body(newInput()), protect, (req: Request, res: Response) => {
-    addNewBook(req.body, res)
+    addNewBook(req, res)
 })
 
 router.put('/update/:id', validator.body(updateInput()), protect, (req: Request, res: Response) => {
-    updateBook(req.body, res, req.params.id)
+    updateBook(req, res, req.params.id)
 })
 
 /* GET home page. */
 router.get('/home', function(req: Request, res: Response, next: NextFunction) {
-  res.render('login', { title: 'Book Resource' });
+  res.render('login', { title: 'Book Resource', "token": req.cookies.Token });
 });
 
 module.exports = router;

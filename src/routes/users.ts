@@ -7,14 +7,16 @@ const { newUser, userLogin } = require('../utils')
 
 router.get('/login', (req: Request, res: Response, next: NextFunction) => {
   res.render('login', { 
-      title: 'Login Page'
+      title: 'Login Page', 
+      "token": req.cookies.Token
   })
   next()
 })
 
 router.get('/register', (req: Request, res: Response, next: NextFunction) => {
   res.render('register', { 
-      title: 'Registration Page'
+      title: 'Registration Page', 
+      "token": req.cookies.Token
   })
   next()
 })
@@ -24,8 +26,8 @@ router.post('/login', validator.body(userLogin()), loginUser)
 router.get('/logout', logoutUser)
 
 /* GET users listing. */
-router.get('/', function(req: Request, res: Response, next: NextFunction) {
-  res.render('index', {title: 'Book Resource'});
-});
+// router.get('/', function(req: Request, res: Response, next: NextFunction) {
+//   res.render('index', {title: 'Book Resource'});
+// });
 
 module.exports = router;

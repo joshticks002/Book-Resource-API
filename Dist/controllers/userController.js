@@ -5,7 +5,7 @@ const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const asyncHandler = require('express-async-handler');
 const generateToken = (id) => {
-    return jwt.sign({ id }, process.env.JWT_SECRET, {
+    return jwt.sign({ id }, '123456abc', {
         expiresIn: '3d',
     });
 };
@@ -48,7 +48,8 @@ const loginUser = asyncHandler(async (req, res) => {
     }
 });
 const logoutUser = asyncHandler(async (req, res) => {
-    res.cookie('Token', null);
+    res.cookie('Token', '');
+    req.cookies.Token = '';
     res.redirect('/api/books');
 });
 module.exports = {

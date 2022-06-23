@@ -7,13 +7,15 @@ const validator = require('express-joi-validation').createValidator({});
 const { newUser, userLogin } = require('../utils');
 router.get('/login', (req, res, next) => {
     res.render('login', {
-        title: 'Login Page'
+        title: 'Login Page',
+        "token": req.cookies.Token
     });
     next();
 });
 router.get('/register', (req, res, next) => {
     res.render('register', {
-        title: 'Registration Page'
+        title: 'Registration Page',
+        "token": req.cookies.Token
     });
     next();
 });
@@ -21,7 +23,7 @@ router.post('/register', validator.body(newUser()), registerUser);
 router.post('/login', validator.body(userLogin()), loginUser);
 router.get('/logout', logoutUser);
 /* GET users listing. */
-router.get('/', function (req, res, next) {
-    res.render('index', { title: 'Book Resource' });
-});
+// router.get('/', function(req: Request, res: Response, next: NextFunction) {
+//   res.render('index', {title: 'Book Resource'});
+// });
 module.exports = router;

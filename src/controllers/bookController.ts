@@ -18,7 +18,7 @@ const getBooks = async(req: Request, res: Response) => {
 const getBookById = async(req: Request, res: Response) => {
     try{
         const books = await Model.bookById(req.params.id)
-        res.render('bookinfo', { title: "Books", books: [books]})
+        res.render('bookinfo', { title: "Books", books: [books], "token": req.cookies.Token})
     } catch(error) {
         res.render('404', {title: "Books", message: error, "token": req.cookies.Token})
     }
@@ -33,46 +33,48 @@ const getBooksByGenre = async(req: Request, res: Response) => {
     }
 }
 
-const addNewBook = async(req: Update, res: Response) => {
+const addNewBook = async(req: Request, res: Response) => {
     try{
+        const body: Update = req.body
         const input = {
-            "Title": req.Title,
-            "Author": req.Author,
+            "Title": body.Title,
+            "Author": body.Author,
             "datePublished": new Date(),
-            "Description": req.Description,
-            "pageCount": req.pageCount,
-            "Genre": req.Genre,
+            "Description": body.Description,
+            "pageCount": body.pageCount,
+            "Genre": body.Genre,
             "bookId": Model.generateId(),
-            "Publisher": req.Publisher,
+            "Publisher": body.Publisher,
         }
     
         const book = await Model.addNew(input)
-        res.render('index', { title: "New Book", books: [book]})
+        res.render('index', { title: "New Book", books: [book], "token": req.cookies.Token})
     } catch(error) {
-        res.render('404', {title: "Books", message: error})
+        res.render('404', {title: "Books", message: error, "token": req.cookies.Token})
     }  
 }
 
 
-const updateBook = async(req: Update, res: Response, idStr: string) => {
+const updateBook = async(req: Request, res: Response, idStr: string) => {
+    const body: Update = req.body
     const id = Number(idStr)
     try{
         const theBook = await Model.bookById(id)
         const input = {
-            "Title": req.Title || theBook.Title,
-            "Author": req.Author || theBook.Author,
+            "Title": body.Title || theBook.Title,
+            "Author": body.Author || theBook.Author,
             "datePublished": theBook.datePublished,
-            "Description": req.Description || theBook.Description,
-            "pageCount": req.pageCount || theBook.pageCount,
-            "Genre": req.Genre || theBook.Genre,
+            "Description": body.Description || theBook.Description,
+            "pageCount": body.pageCount || theBook.pageCount,
+            "Genre": body.Genre || theBook.Genre,
             "bookId": theBook.bookId,
-            "Publisher": req.Publisher || theBook.Publisher,
+            "Publisher": body.Publisher || theBook.Publisher,
         }
 
         const book = await Model.update(id, input)
-        res.render('index',{ title: "Updated Book", books: [book]})
+        res.render('index',{ title: "Updated Book", books: [book], "token": req.cookies.Token})
     } catch(error) {
-        res.render('404', {title: "Books", message: error})
+        res.render('404', {title: "Books", message: error, "token": req.cookies.Token})
     }  
 }
 
@@ -85,9 +87,10 @@ const  deleteBookData = async(req: Request, res: Response) => {
         res.status(201).render('index', { 
                 title: "Deleted", 
                 books: [theBook], 
-                message: `${theBook.Title} with id ${id} has been removed` })
+                message: `${theBook.Title} with id ${id} has been removed`, 
+                "token": req.cookies.Token })
     } catch(error) {
-        res.render('404', {title: "Books", message: error})
+        res.render('404', {title: "Books", message: error, "token": req.cookies.Token})
     }
 }
 

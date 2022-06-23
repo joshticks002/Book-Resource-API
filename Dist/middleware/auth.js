@@ -5,11 +5,12 @@ const jwt = require('jsonwebtoken');
 const asyncHandler = require('express-async-handler');
 const protect = asyncHandler(async (req, res, next) => {
     let token = req.cookies.Token;
+    const JWT_SECRET = '123456abc';
     if (token) {
         try {
             // Verify token
-            if (process.env.JWT_SECRET) {
-                const decoded = jwt.verify(token, process.env.JWT_SECRET);
+            if (JWT_SECRET) {
+                const decoded = jwt.verify(token, JWT_SECRET);
                 // Get user from the token
                 if (typeof (decoded) !== "string") {
                     const user = await Model.findUserById(decoded.id);
@@ -28,8 +29,8 @@ const protect = asyncHandler(async (req, res, next) => {
             // Get token from header
             token = req.headers.authorization.split(' ')[1];
             // Verify token
-            if (process.env.JWT_SECRET) {
-                const decoded = jwt.verify(token, process.env.JWT_SECRET);
+            if (JWT_SECRET) {
+                const decoded = jwt.verify(token, JWT_SECRET);
                 // Get user from the token
                 if (typeof (decoded) !== "string") {
                     const user = await Model.findUserById(decoded.id);
