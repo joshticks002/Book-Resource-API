@@ -78,6 +78,12 @@ const updateBook = async(req: Request, res: Response, idStr: string) => {
     const id = Number(idStr)
     try{
         const theBook = await Model.bookById(id)
+
+        if (req.cookies.Uid !== theBook.Uid || !theBook.Uid) {
+            res.status(400);
+            throw new Error('You have no access to this book!');
+        }
+        
         const input = {
             "Uid": theBook.Uid,
             "Title": body.Title || theBook.Title,
@@ -109,6 +115,11 @@ const  deleteBookData = async(req: Request, res: Response) => {
     try{
         const id = Number(req.params.id)
         const theBook = await Model.bookById(id);
+
+        if (req.cookies.Uid !== theBook.Uid || !theBook.Uid) {
+            res.status(400);
+            throw new Error('You have no access to this book!');
+        }
 
         await Model.deleteBook(id);
         res.status(201).render('index', { 
