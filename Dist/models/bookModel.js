@@ -19,7 +19,7 @@ function generateId() {
 function bookById(idStr) {
     return new Promise((resolve, reject) => {
         const id = parseInt(idStr);
-        if (id > database.length) {
+        if (id > database[database.length - 1].bookId) {
             reject(`Book with id ${id} not found`);
         }
         else {
