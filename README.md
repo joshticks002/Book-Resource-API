@@ -1,4 +1,4 @@
-# week-6-task-SQ011A-Node-pod-c
+# Book Resource api
 # EXPRESS 
 
 ### Setup
